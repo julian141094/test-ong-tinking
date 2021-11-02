@@ -1,22 +1,26 @@
 import React from 'react' 
 import styled from 'styled-components'
+import Image from '../basics/Image'
 
 const Area = styled.div`
-  background: white;
   min-width: 100vw;
-  /* min-height: 80px; */
   padding: 16px 24px;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+  position: absolute;
 `
 
-const Img = styled.img`
-  width: 93px;
-  height: 48px;
-`
-
+/**
+ * @name Nav
+ * @description Logo container
+ * @returns Component
+ */
 const Nav = () => {
   return (
     <Area>
-      <Img src='/logo.png' /></Area>
+      <Image src='/logo.png' width={'93px'} height={'48px'}/>
+    </Area>
   )
 }
 
