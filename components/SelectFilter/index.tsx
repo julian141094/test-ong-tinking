@@ -1,6 +1,12 @@
+import React, {useEffect, useState} from 'react'
 import styled from "styled-components"
 import {Normal} from '../basics/Text'
-import Container from "../basics/containers/Container"
+
+type SelectProps = {
+  updateSelect : any,
+  selected: string,
+  preText: string
+}
 
 const Area = styled.div`
   background-color: ${props => props.theme.colors.selectBackgroud};
@@ -20,25 +26,31 @@ const Text = styled(Normal)`
   color: ${props => props.theme.colors.thirdText};
 `
 
-const TextStrong = styled(Normal)`
-  color: ${props => props.theme.colors.thirdText};
-  font-weight: 600;
-`
-
-
-const Select = () => {
+/**
+ * @name Select
+ * @description Show any options, and return father the user selection
+ * @param updateSelect 
+ * @param selected string
+ * @returns 
+ */
+const Select = ( { updateSelect, selected, preText} : SelectProps) => {
   return (
     <Area>
       <Text>
-        Cooked before: 
+        {preText}
       </Text>
-      <Element>
-        <option style={{
-          backgroundColor: 'red',
-          minWidth: 80,
-        }} value="all" selected>All</option>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
+      <Element
+        onChange={e => updateSelect(e.target.value)}
+      >
+        <option value="All"
+          selected={selected === 'All' ? true : false} 
+        >All</option>
+        <option value="Active"   
+          selected={selected === 'Active' ? true : false} 
+        >Active</option>
+        <option value="Inactive" 
+          selected={selected === 'Inactive' ? true : false} 
+        >Inactive</option>
       </Element>
     </Area>
   )

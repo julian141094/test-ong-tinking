@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react'
 import styled from "styled-components"
 import Container from "../../basics/containers/Container"
 import { SubTitle, Normal } from "../../basics/Text"
@@ -6,13 +7,9 @@ import StarRatings from 'react-star-ratings'
 import Switch from "react-switch";
 import theme from "../../../styles/theme"
 import Item from './Item'
+import Btn from '../../basics/Button'
 
-const data = [
-  '1/4 cup black chia seeds',
-  '2 1/2 cups almond milk',
-  '2 oranges',
-  '1 1/2 cups wholemeal plain flour',
-]
+import { useDispatch, useSelector } from 'react-redux';
 
 const TitleArea = styled.div`
   display: flex;
@@ -55,34 +52,61 @@ const Button = styled.button`
   align-items: center;
 `
 
+/**
+ * @name ReadArea
+ * @description Show the information of recipes, and change to edit mode when user click on edit buttom
+ * @returns Component
+ */
 const ReadArea = () => {
+  //Consts
+  const dispatch = useDispatch()
+  const individual = useSelector(state => state.home.individualRecipe )
+
+  //Normal functions
+
+  const handleClickEdit = () => {
+    dispatch({ type: 'SET_IS_READING',payload: false})
+    dispatch({ type: 'SET_IS_EDITING',payload: true})
+    dispatch({ type: 'SET_IS_CREATING',payload: false})
+  }
+  
+  const handleClickClose = () => {
+    dispatch({ type: 'SET_SHOW_INFORMATION_AREA',payload: false})
+    dispatch({ type: 'SET_INDIVIDUAL_RECIPE',payload: {}})
+    dispatch({ type: 'SET_IS_READING',payload: false})
+    dispatch({ type: 'SET_IS_EDITING',payload: false})
+    dispatch({ type: 'SET_IS_CREATING',payload: false})
+  }
+
   return (
     <Area>
       <Container type={'column'}>
         <TitleArea>
           <SubTitle>
-            Mixed Berry Melody
+            {individual.name}
           </SubTitle>
-          <Image src='/Icons/times/times.png' height={'16.5px'} width={'16.5px'}/>
+          <Image onClick={() => handleClickClose()} src='/Icons/times/times.png' height={'16.5px'} width={'16.5px'}/>
         </TitleArea>
-        <Container type={'column'} padding={'30px 0px 0px 0px'}>
-          <Title>
-            Ingredients
-          </Title>
-          {
-            data.length > 0 ? 
-              data.map((element, i) => <Item key={i} text={element}/>)
-            : null
-          }
-        </Container>
+        {
+          individual.ingredients.length > 0 ? 
+            <Container type={'column'} padding={'30px 0px 0px 0px'}>
+              <Title>
+                Ingredients
+              </Title>
+              {
+                individual.ingredients.length > 0 ? 
+                  individual.ingredients.map((element, i) => <Item key={i} text={element}/>)
+                : null
+              }
+            </Container>
+          : null 
+        }
         <Container type={'column'} padding={'30px 0px'}>
           <Title>
             Preparation
           </Title>
           <Normal>
-            Combine the chia seeds, almond milk and 1 tablespoon of the maple syrup in a large jug. Stand for 3-4 mins or until seeds swell. Meanwhile, finely grate 1 teaspoon rind from 1 orange. Cut the segments from both oranges (see Notes).
-            Combine the flour, baking powder, orange rind and half the walnuts in a medium bowl. Whisk in the milk mixture until smooth. Stir in the blueberries.
-            Spray a non-stick frying pan with oil and heat over medium heat. Cook level 1/2 cup measures of mixture, in batches, for 2 mins each side or until golden to make 8 pancakes. Divide among plates. Top with the orange segments, ricotta, remaining syrup and walnuts.
+            {individual.preparation}
           </Normal>
         </Container>
         <Container type={'column'} padding={'0px 0px 0px 0px'}>
@@ -90,7 +114,7 @@ const ReadArea = () => {
             Reviews
           </Title>
           <StarRatings
-            rating={3}
+            rating={individual.rating}
             starDimension="15px"
             starSpacing="2.5px"
             starRatedColor={theme.colors.seventh}
@@ -102,9 +126,8 @@ const ReadArea = () => {
             Cooked before
           </Title>
           <Switch 
-            onChange={() => console.log('click')} 
             onColor={theme.colors.eighth}
-            checked={true} 
+            checked={individual.checked} 
             uncheckedIcon={false}
             checkedIcon={false}
             height={24}
@@ -114,11 +137,7 @@ const ReadArea = () => {
           />
         </Container>
       </Container>
-      <AreaButton>
-        <Button>
-          Editar
-        </Button>
-      </AreaButton>
+      <Btn text={'Edit'} click={() => handleClickEdit()}/>
     </Area>
   )
 }

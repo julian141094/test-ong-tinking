@@ -1,16 +1,49 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Container from "../basics/containers/Container"
 import Image from "../basics/Image"
 import {Title, Normal} from "../basics/Text"
 import TextSearch from '../TextSearch'
 import Select from "../SelectFilter"
 import Table from '../Table'
+import { useDispatch, useSelector } from 'react-redux'
 
 /**
  * @name Recipes
+ * @description Display the filter or select to re order the recipe list data
  * @returns Component
  */
 const Recipes = () => {
+  // Consts
+  const dispatch = useDispatch()
+  const [selected, setSelected] = useState('All')
+  const recipes = useSelector(state => state.home.listRecipes)
+
+  // UseEffects
+  useEffect(() => {
+    reorganiceRecipeList()
+  }, [selected])
+
+  // Normal Functions
+  const reorganiceRecipeList = () => {
+    let arr = []
+    switch (selected) {
+      case 'Active':
+        arr = recipes.sort(( // true first
+          (a, b) => Number(b.checked) - Number(a.checked) ))
+        break;
+      case 'Inactive':
+        arr = recipes.sort((  // false first
+          (a, b) => Number(a.checked) - Number(b.checked) ))
+        break;
+      default:
+        arr = recipes.sort((  // false first
+          (a, b) => Number(a.id) - Number(b.id) ))        
+        break;
+    }
+    dispatch({ type: 'SET_LIST_RECIPES', payload: []})
+    dispatch({ type: 'SET_LIST_RECIPES', payload: arr})
+  }
+
   return(
     <Container type='row'> 
       <Image 
@@ -27,7 +60,11 @@ const Recipes = () => {
           padding={'0px 0px'}
         >
           <TextSearch/>
-          <Select/>
+          <Select 
+            preText={'Cooked before: '} 
+            updateSelect={setSelected} 
+            selected={selected}
+          />
         </Container>
         <Container padding={'24px 0px'}>
           <Table/>

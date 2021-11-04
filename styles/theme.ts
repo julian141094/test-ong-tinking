@@ -9,6 +9,8 @@ const theme = {
     seventh: '#FFD19A',
     eighth: '#8DC63F',
     nineth: '#0C969D',
+    teenth: '#54B5BA',
+    eleventh: '#B2B2B3',
 
 
     primaryText: '#19191A',

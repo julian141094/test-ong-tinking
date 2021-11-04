@@ -1,8 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Getting Started 🚀 🚀 🚀 
 
-## Getting Started
+Hello, my name is Julian and this is my test. If you wanna run the code, please install the dependencies:
 
-First, run the development server:
+```bash
+npm install
+# or
+yarn install
+```
+
+And then, run this please:
 
 ```bash
 npm run dev
@@ -10,25 +16,31 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the test.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Implemented Technologies
 
-## Learn More
+Please, let me show you all of tools that i used, to build this test:
 
-To learn more about Next.js, take a look at the following resources:
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. 
+- [React.js](https://reactjs.org/docs/getting-started.html) - React is a JavaScript library for building user interfaces. 
+- [Next.js](https://nextjs.org/docs) - Enter Next.js, the React Framework. Next.js provides a solution to all of the above problems. But more importantly, it puts you and your team in the pit of success when building React applications.
+- [TypeScript](https://www.typescriptlang.org/) - TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
+- [Redux](https://redux.js.org/introduction/getting-started) - Redux is a predictable state container for JavaScript apps.
+- [Formik](https://formik.org/) - Formik is the world's most popular open source form library for React and React Native.
+- And another more tools 😎 .
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can check the rest on package.json file! 
 
-## Deploy on Vercel
+## Development Vision
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+When developing this code, try to maintain the atomic component design paradigm, making (where possible) for each element of the sections a specific functional component. Given the number of elements built, manage your communication in two main ways, the first is through a global state manager (redux), and the second is through parent / child communication between the closest components. It should be noted that large UI libraries were not implemented in the project, but rather, it was chosen to make most of the components shown in the figma prototype with native web technologies directly. Looking to maintain an order and leave the possibility that each part of the project can be scaled.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Development Details
+
+All the test requirements were met, with the exception of two items, the first and most specific of the items that I could not complete is to place a zombra on each item that is added to the list of recipes. On the other hand, the second but less specific item is the design of the sorting filter options, however, it is worth noting that at a functional level this filter performs its respective functions in the list of recipes.
+
+Thank you very much for all the time and dedication, blessings! 🙏 

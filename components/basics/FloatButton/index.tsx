@@ -1,4 +1,12 @@
+import React, {useState, useEffect} from 'react'
 import styled from "styled-components";
+import { useDispatch, useSelector } from 'react-redux'
+import ToolTip from '../Tooltip'
+
+type FloatButtonProps = {
+  click : any,
+  text: string
+}
 
 const Element = styled.button`
   background: ${props => props.theme.colors.nineth};
@@ -18,12 +26,23 @@ const Element = styled.button`
   align-items: center;
 `
 
-const FloadButton = () => {
-  return (
-    <Element>
-      +
-    </Element>
-  ) 
+/**
+ * @name FloadButton
+ * @description Render a fload button on down rigth screen part 
+ * @param click 
+ * @param text 
+ * @returns Component
+ */
+const FloadButton = ({click, text} : FloatButtonProps) => {
+  const tools = useSelector(state => state.tools )
+  return tools.showToolButton ? (
+      <Element onClick={() => click()}>
+        <ToolTip text={'Add recipe'}>
+          {text}
+        </ToolTip>
+      </Element>
+    ) 
+  : null
 }
 
 export default FloadButton

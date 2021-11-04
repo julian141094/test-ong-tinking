@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import {Normal} from '../../basics/Text'
 import StarRatings from 'react-star-ratings'
-import theme from '../../../styles/theme'
 import Switch from "react-switch";
+import theme from '../../../styles/theme'
+import { useDispatch, useSelector } from 'react-redux'
 
 type RowProps = {
   name  : string,
@@ -32,12 +33,24 @@ const AreaOption = styled.div`
  * @returns Component
  */
 const Row = ( {name, rating, checked, id, clicked} : RowProps ) => {
+  //Consts
+  const recipes = useSelector(state => state.home.listRecipes )
+  const dispatch = useDispatch()
+
+  const handleShwitChange = (e : any) => {
+    let arr = [...recipes]
+    let obj = recipes.filter(item => item.id === id)[0]
+    obj.checked = e
+    arr[id] = obj
+    dispatch({ type: 'SET_LIST_RECIPES', payload: arr})
+  }
+
   return (
-    <Area onClick={() => clicked({id})}>
-      <AreaOption width={'50%'}>
+    <Area>
+      <AreaOption width={'50%'} onClick={() => clicked(id)}>
         <Normal>{name}</Normal>
       </AreaOption>
-      <AreaOption width={'25%'}>
+      <AreaOption width={'25%'} onClick={() => clicked(id)}>
         <StarRatings
           rating={rating}
           starDimension="15px"
@@ -48,7 +61,7 @@ const Row = ( {name, rating, checked, id, clicked} : RowProps ) => {
       </AreaOption>
       <AreaOption width={'25%'}>
         <Switch 
-          onChange={() => console.log('click')} 
+          onChange={(e) => handleShwitChange(e)} 
           onColor={theme.colors.eighth}
           checked={checked} 
           uncheckedIcon={false}

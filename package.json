@@ -9,16 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.2",
+    "formik": "^2.2.9",
     "next": "12.0.1",
+    "next-redux-wrapper": "^7.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-redux": "^7.2.6",
     "react-star-ratings": "^2.3.0",
     "react-switch": "^6.0.0",
-    "styled-components": "^5.3.3"
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.0",
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/next-redux-wrapper": "^3.0.0",
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
+    "@types/react-redux": "^7.1.20",
     "@types/styled-components": "^5.1.15",
     "babel-plugin-styled-components": "^1.13.3",
     "eslint": "7.32.0",
