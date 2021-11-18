@@ -1,10 +1,11 @@
-import React from "react"
+import React, {useCallback} from "react"
 import styled from "styled-components"
 import Image from "../basics/Image"
 import Input from "../basics/TextInput"
 import Container from "../basics/containers/Container"
 import { useDispatch } from 'react-redux'
 import { recipeList } from "../../services/fakeData"
+import { debounce } from "lodash"
 
 const Area = styled.div`
   background-color: ${props => props.theme.colors.fieldBackground};
@@ -22,26 +23,35 @@ const Area = styled.div`
  * @description Text input search 
  * @returns Component
  */
-const TextSearch = (  ) => {
+const TextSearch = () => {
   // Consts
   const dispatch = useDispatch()
   
   //Normal functions
+  const filterNow = (event: string) => {
+    let text  = event.target.value
+    let newPayload = text === '' ? 
+      recipeList : 
+      recipeList.filter(item => item.name.toLowerCase().includes(text.toLowerCase())) 
+    dispatch(
+      { type: 'SET_LIST_RECIPES', 
+        payload: newPayload
+      }
+    )
+  }
+
+
   /**
    * @name handleChange
    * @description Handle field change (filter), and set new list of recipes at store
    * @param event string
    * @return Nothing
    */
-  const handleChange = (event: string) => {
-    let val = event.target.value
-    if (val === '') {
-      dispatch({ type: 'SET_LIST_RECIPES', payload: recipeList})
-    } else {
-      let obj = recipeList.filter(item => item.name.toLowerCase().includes(val.toLowerCase()))
-      dispatch({ type: 'SET_LIST_RECIPES', payload: obj})
-    }
-  }
+  const handleChange = useCallback(
+      debounce(filterNow, 2000)
+    ,
+    [],
+  )
 
   return (
     <Area>

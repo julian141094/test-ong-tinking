@@ -21,6 +21,7 @@ export const recipeList = [
       side or until golden to make 8 pancakes. Divide \
       among plates. Top with the orange segments, ricotta, \
       remaining syrup and walnuts.',
+    weight: 4,
   },
   {
     id: 1,
@@ -34,6 +35,7 @@ export const recipeList = [
     preparation: 'Meanwhile, finely grate 1 teaspoon \
       rind from 1 orange. Cut the segments from both \
       oranges (see Notes). Combine the flour,',
+    weight: 2,
   },
   {
     id: 2,
@@ -49,6 +51,7 @@ export const recipeList = [
     preparation: 'Cook level 1/2 cup measures of mixture, \
       in batches, for 2 mins each side or until golden to \
       make 8 pancakes. Divide among plates.',
+    weight: 4,
   },
   {
     id: 3,
@@ -56,10 +59,11 @@ export const recipeList = [
     ingredients: [
       '2 1/2 cups almond milk',
     ],
-    rating: 4,
+    rating: 1,
     checked: false,
     preparation: 'Meanwhile, finely grate 1 teaspoon \
       rind from 1 orange. Cut the segments from both \
       oranges (see Notes). Combine the flour,',
+    weight: 5,
   },
 ]

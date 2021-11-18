@@ -31,6 +31,7 @@ const Table = ( ) => {
               checked={item.checked} 
               name={item.name} 
               clicked={handleClick}
+              weight={item.weight}
             />)
         : <NothingText text={'No results found'} />
       }

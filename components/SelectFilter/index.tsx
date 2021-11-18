@@ -5,7 +5,8 @@ import {Normal} from '../basics/Text'
 type SelectProps = {
   updateSelect : any,
   selected: string,
-  preText: string
+  preText: string,
+  children: any
 }
 
 const Area = styled.div`
@@ -33,7 +34,7 @@ const Text = styled(Normal)`
  * @param selected string
  * @returns 
  */
-const Select = ( { updateSelect, selected, preText} : SelectProps) => {
+const Select = ( { updateSelect, selected, preText, children} : SelectProps) => {
   return (
     <Area>
       <Text>
@@ -42,15 +43,19 @@ const Select = ( { updateSelect, selected, preText} : SelectProps) => {
       <Element
         onChange={e => updateSelect(e.target.value)}
       >
-        <option value="All"
-          selected={selected === 'All' ? true : false} 
-        >All</option>
-        <option value="Active"   
-          selected={selected === 'Active' ? true : false} 
-        >Active</option>
-        <option value="Inactive" 
-          selected={selected === 'Inactive' ? true : false} 
-        >Inactive</option>
+        {
+          children == undefined ? <>
+            <option value="All"
+              selected={selected === 'All' ? true : false} 
+            >All</option>
+            <option value="Active"   
+              selected={selected === 'Active' ? true : false} 
+            >Active</option>
+            <option value="Inactive" 
+              selected={selected === 'Inactive' ? true : false} 
+            >Inactive</option>
+          </> : children
+        }
       </Element>
     </Area>
   )

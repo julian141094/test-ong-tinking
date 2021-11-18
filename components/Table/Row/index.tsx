@@ -10,7 +10,8 @@ type RowProps = {
   rating  : number,
   checked  : boolean,
   clicked : any,
-  id : number
+  id : number,
+  weight: number,
 }
 
 const Area = styled.div`
@@ -32,7 +33,7 @@ const AreaOption = styled.div`
  * @description Component to render the Row of recipes table
  * @returns Component
  */
-const Row = ( {name, rating, checked, id, clicked} : RowProps ) => {
+const Row = ( {name, rating, checked, id, clicked, weight} : RowProps ) => {
   //Consts
   const recipes = useSelector(state => state.home.listRecipes )
   const dispatch = useDispatch()
@@ -47,10 +48,13 @@ const Row = ( {name, rating, checked, id, clicked} : RowProps ) => {
 
   return (
     <Area>
-      <AreaOption width={'50%'} onClick={() => clicked(id)}>
+      <AreaOption width={'40%'} onClick={() => clicked(id)}>
         <Normal>{name}</Normal>
       </AreaOption>
-      <AreaOption width={'25%'} onClick={() => clicked(id)}>
+      <AreaOption width={'20%'}>
+        <Normal>{weight}</Normal>
+      </AreaOption>
+      <AreaOption width={'20%'} onClick={() => clicked(id)}>
         <StarRatings
           rating={rating}
           starDimension="15px"
@@ -59,7 +63,7 @@ const Row = ( {name, rating, checked, id, clicked} : RowProps ) => {
           starEmptyColor={theme.colors.sixth}
         />
       </AreaOption>
-      <AreaOption width={'25%'}>
+      <AreaOption width={'20%'}>
         <Switch 
           onChange={(e) => handleShwitChange(e)} 
           onColor={theme.colors.eighth}

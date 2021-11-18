@@ -29,13 +29,16 @@ const AreaOption = styled.div`
 const Head = () => {
   return (
     <Area>
-      <AreaOption width={'50%'}>
+      <AreaOption width={'40%'}>
         <Text>Recipe Name</Text>
       </AreaOption>
-      <AreaOption width={'25%'}>
+      <AreaOption width={'20%'}>
+        <Text>Weight</Text>
+      </AreaOption>
+      <AreaOption width={'20%'}>
         <Text>Reviews</Text>
       </AreaOption>
-      <AreaOption width={'25%'}>
+      <AreaOption width={'20%'}>
         <Text>Cooked before</Text>
       </AreaOption>
     </Area>

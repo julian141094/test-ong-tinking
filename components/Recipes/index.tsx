@@ -35,6 +35,14 @@ const Recipes = () => {
         arr = recipes.sort((  // false first
           (a, b) => Number(a.checked) - Number(b.checked) ))
         break;
+      case 'Major':        
+        arr = recipes.sort(( // true first
+          (a, b) => Number(b.weight) - Number(a.weight) ))
+        break;
+      case 'Minus':
+        arr = recipes.sort((  // false first
+          (a, b) => Number(a.weight) - Number(b.weight) ))
+        break;
       default:
         arr = recipes.sort((  // false first
           (a, b) => Number(a.id) - Number(b.id) ))        
@@ -65,6 +73,18 @@ const Recipes = () => {
             updateSelect={setSelected} 
             selected={selected}
           />
+          <Select 
+            preText={'Order by: '} 
+            updateSelect={setSelected} 
+            selected={selected}
+          >
+            <option value="Major"
+              selected={selected === 'Major' ? true : false} 
+            >mayor</option>
+            <option value="Minus"   
+              selected={selected === 'Minus' ? true : false} 
+            >minus</option>
+          </Select>
         </Container>
         <Container padding={'24px 0px'}>
           <Table/>
